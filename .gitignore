@@ -1,0 +1,7 @@
+node_modules/
+build/
+npm-debug.log
+dist/
+FidelisaApp-darwin-x64/
+src/stores/Const.js
+params.json

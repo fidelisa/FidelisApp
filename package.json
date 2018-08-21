@@ -1,0 +1,49 @@
+{
+  "name": "fidelisa-apps",
+  "version": "1.0.0",
+  "description": "Fidelisa apps console",
+  "main": "main.js",
+  "scripts": {
+    "init": "node scripts/init.js",
+    "start": "ENV=development electron .",
+    "dev": "concurrently -k 'babel-node server.js' 'npm start'",
+    "build": "webpack --config webpack.config.production.js && electron-packager . FidelisaApp --platform=darwin --arch=x64 --prune --overwrite --icon ./FA_icon"
+  },
+  "author": "Yann-Cyril PELUD",
+  "license": "ISC",
+  "devDependencies": {
+    "ansi-to-html": "^0.4.1",
+    "babel": "^5.6.10",
+    "babel-core": "^5.6.11",
+    "babel-loader": "^5.2.2",
+    "bluebird": "^3.5.1",
+    "concurrently": "^3.4.0",
+    "css-loader": "^0.15.1",
+    "electron": "^1.6.2",
+    "file-loader": "^0.8.5",
+    "json-loader": "^0.5.4",
+    "less": "^2.5.1",
+    "less-loader": "^2.2.0",
+    "lodash": "^4.17.10",
+    "node-libs-browser": "^0.5.2",
+    "react-router": "^2.8.1",
+    "style-loader": "^0.12.3",
+    "underscore": "^1.9.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-dev-server": "^1.16.3",
+    "webpack-hot-middleware": "^2.18.0",
+    "webpack-target-electron-renderer": "^0.4.0"
+  },
+  "dependencies": {
+    "alt": "^0.18.5",
+    "alt-utils": "^1.0.0",
+    "animate.css": "^3.5.2",
+    "bootstrap": "^3.3.5",
+    "history": "^1.13.0",
+    "jquery": "^2.1.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-toastr": "^2.8.2"
+  }
+}

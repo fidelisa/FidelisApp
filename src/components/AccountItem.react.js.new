@@ -1,0 +1,86 @@
+import React from "react";
+import $ from 'jquery';
+import { Link } from 'react-router'
+import AccountStore from '../stores/Account.store'
+import AccountActions from '../actions/AccountActions'
+
+var baseUrl = 'https://api.fidelisa.com';
+
+
+var AccountItem = React.createClass({
+  getStateFromStore(props) {
+    const { uuid } = props ? props.data : this.props.data
+    let accounts =  AccountStore.getState().accounts;
+    console.log("getStateFromStore: id", accounts, uuid);
+
+    return {
+      account: accounts[uuid],
+      id: uuid
+    }
+  },
+
+  getInitialState() {
+    return this.getStateFromStore()
+  },
+
+  componentDidMount() {
+    AccountStore.listen(this.updateAccount)
+  },
+
+  componentWillUnmount() {
+    AccountStore.unlisten(this.updateAccount)
+  },
+
+  componentWillReceiveProps(nextProps) {
+    // console.log("componentWillReceiveProps: id", this.props);
+    this.setState(this.getStateFromStore(nextProps))
+  },
+
+  updateAccount(state) {
+    if (!this.isMounted())
+      return
+    console.log('updateAccount', state);
+
+    this.setState(this.getStateFromStore())
+  },
+
+  render: function() {
+    console.log(this.state);
+    return (
+
+      <div className="account-item pure-g">
+          <div className="pure-u">
+            <img className="account-avatar" alt="Icon" height="64" width="64" src={this.state.imageUrl} />
+          </div>
+          <div className="pure-u-3-4">
+              <h5 className="account-name">{this.state.title}</h5>
+              <h4 className="account-subject">{this.state.status}</h4>
+          </div>
+          <Link className="pure-u" to={`/application/${this.state.accountId}`} activeClassName="active">
+            Plus
+          </Link>
+      </div>
+
+    );
+  }
+});
+
+// address1: "217, rue du faubourg saint honoré"
+// address2: ""
+// city: "PARIS"
+// init_date: "2014-03-03"
+// landing_page: nullnotes: ""
+// pipe_amount: null
+// pipe_level: 0
+// reminder_status: null
+// setup_date: null
+// status: "Demo"
+// subscription_date: null
+// title: "Démonstration"
+// type: "Multi"
+// uuid: "617B86827663488393FDB6466373CA4F"
+// vendors_count: "3"
+// version_app: "2"
+// zipcode: "75008"
+
+module.exports = AccountItem;

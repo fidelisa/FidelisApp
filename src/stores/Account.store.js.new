@@ -1,0 +1,63 @@
+import alt from '../alt';
+import AccountActions from '../actions/AccountActions'
+
+// let _accounts = {}
+// let _initCalled = false
+// let _changeListeners = []
+
+class AccountStore {
+
+  constructor() {
+
+    this.bindActions(AccountActions);
+
+    this.accounts = [];
+    this.bindListeners({
+      handleFetchAccounts: AccountActions.FETCH_ACCOUNTS,
+      handleFetchAccount: AccountActions.FETCH_ACCOUNT,
+      handleUpdateAccounts: AccountActions.UPDATE_ACCOUNTS,
+      handleUpdateAccount: AccountActions.UPDATE_ACCOUNT
+    });
+
+  }
+
+  findAccount(uuid) {
+    this.accounts.forEach((account) => {
+      if (account.uuid === uuid) return account
+    });
+  }
+
+  handleFetchAccounts() {
+    this.accounts = [];
+    console.log("handleFetchAccounts");
+  }
+
+  handleFetchAccount() {
+    console.log("handleFetchAccount");
+  }
+
+  handleUpdateAccounts(accounts) {
+    this.accounts = accounts;
+    console.log("handleUpdateAccounts");
+  }
+
+  handleUpdateAccount(newAccount) {
+    console.log("handleUpdateAccount", newAccount);
+    let index = -1;
+
+    this.accounts.forEach((account, idx) => {
+      if (account.uuid === newAccount.uuid) {
+        index = idx;
+      }
+    });
+
+    if (index >= 0) {
+      this.accounts[index] = newAccount;
+    } else {
+      this.accounts.push(newAccount);
+    }
+  }
+
+
+}
+module.exports = alt.createStore(AccountStore, 'AccountStore');

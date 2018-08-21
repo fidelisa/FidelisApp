@@ -1,0 +1,8 @@
+{
+  API: "< url api >",
+  PREVIEW: "< url preview >",
+  APP: "< url app >",
+  PROVIDER: "< PROVIDER >",
+  PROVIDER_KEY: "< PROVIDER_KEY >",
+  USER: "< USER_ID >"
+}

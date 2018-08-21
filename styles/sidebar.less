@@ -1,0 +1,146 @@
+/* Sidebar */
+
+.sidebar {
+  background-color: white;
+  margin: 0;
+  border-right: 1px solid @color-divider;
+  display: flex;
+  flex-direction: column;
+  min-width: @sidebar-width;
+  box-sizing: border-box;
+  position: relative;
+  .sidebar-header {
+    flex: 0 auto;
+    min-width: @sidebar-width;
+    min-height: 160px;
+    display: flex;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.25s;
+  }
+  .sidebar-containers {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    max-width: @sidebar-width;
+    ul {
+      flex: 1 auto;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      .new-container-item {
+        .info {
+          position: relative;
+          top: 9px;
+        }
+      }
+
+      a {
+        color: inherit;
+        flex-shrink: 0;
+        cursor: default;
+        outline: none;
+        &:hover {
+          text-decoration: none;
+          cursor: default;
+        }
+        &:first-child {
+          li {
+            //border-top: 1px solid @color-divider;
+          }
+        }
+        &:focus {
+          text-decoration: none;
+        }
+        &.active {
+          background: @brand-action;
+          li {
+            height: 45px;
+            border-bottom: none;
+            background-color: @brand-primary;
+            .name {
+              color: white;
+            }
+            .image {
+              color: white;
+              opacity: 0.8;
+            }
+            .action {
+              .btn {
+                border: 1px solid white;
+                .icon {
+                  color: white;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      li {
+        vertical-align: middle;
+        padding: 0.5rem 1rem 0.7rem 1.4rem;
+        display: flex;
+        flex-direction: row;
+        height: 45px;
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+        &:hover {
+          background-color: @color-box-button;
+        }
+
+        .app-icon {
+          height: 30px;
+          width: 30px;
+        }
+
+        .info {
+          margin-left: 1rem;
+          .name {
+            text-overflow: ellipsis;
+            max-width: @sidebar-text-overflow-width;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 13px;
+            font-weight: 400;
+            color: @gray-darkest;
+          }
+          .status {
+            margin-top: -0.1rem;
+            color: @gray-light;
+            font-size: 11px;
+            font-weight: 400;
+            text-overflow: ellipsis;
+            max-width: @sidebar-text-overflow-width;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/* Sidebar Buttons */
+
+.sidebar-buttons {
+  border-top: 1px solid @color-divider;
+  min-height: 40px;
+  flex: 0 auto;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  opacity: 0.9;
+  z-index: 10000;
+
+}
+
+.sidebar-buttons-padding {
+  position: relative;
+  height: 62px;
+}
